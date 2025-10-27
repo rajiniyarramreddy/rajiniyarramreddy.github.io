@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <base target="_self">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuickTell Agent - Salesforce Data Analytics Platform</title>
+    <meta name="description" content="QuickTell Agent - Game-changing data analytics powerhouse built on Salesforce platform for C-suite, sales and service leaders.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#00A1E0",
+                        secondary: "#032D60",
+                        accent: "#FF6D01",
+                        light: "#F3F2F7"
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'system-ui', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="min-h-screen bg-white font-sans">
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <nav class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-2">
+                    <img src="QuickTellLogo.png" alt="QuickTell Agent Logo" class="w-10 h-10 object-contain">
+                    <span class="text-xl font-bold text-secondary">QuickTell Agent</span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html" class="text-gray-600 hover:text-primary transition-colors">Home</a>
+                    <a href="#features" class="text-gray-600 hover:text-primary transition-colors" onclick="event.preventDefault(); scrollToSection('features')">Features</a>
+                    <a href="#use-cases" class="text-gray-600 hover:text-primary transition-colors" onclick="event.preventDefault(); scrollToSection('use-cases')">Use Cases</a>
+                    <a href="#pricing" class="text-gray-600 hover:text-primary transition-colors" onclick="event.preventDefault(); scrollToSection('pricing')">Pricing</a>
+                    <a href="#contact" class="text-gray-600 hover:text-primary transition-colors" onclick="event.preventDefault(); scrollToSection('contact')">Contact</a>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button class="hidden md:block text-primary hover:text-secondary transition-colors">Login</button>
+                    <button class="bg-primary text-white px-6 py-2 rounded-lg hover:bg-secondary transition-colors" onclick="scrollToSection('pricing')">Get Started</button>
+                    <button class="md:hidden text-gray-600">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-br from-secondary to-primary text-white py-20">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto text-center">
+                <h1 class="text-4xl md:text-6xl font-bold mb-6">Unlock Your Data's Full Potential</h1>
+                <p class="text-xl md:text-2xl mb-8 text-blue-100">Actionable insights without the hassle. Built exclusively for Salesforce leaders.</p>
+                <p class="text-lg mb-10 text-blue-50">Transform raw numbers into strategic gold with our game-changing data analytics powerhouse.</p>
+                <div class="flex flex-col sm:flex-row justify-center gap-4">
+                    <button class="bg-accent text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-orange-600 transition-colors" onclick="scrollToSection('pricing')">Start Your Free Trial</button>
+                    <button class="bg-white text-primary px-8 py-4 rounded-lg text-lg font-semibold hover:bg-gray-100 transition-colors" onclick="scrollToSection('features')">See How It Works</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-20 bg-light">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-secondary mb-4">What Sets QuickTell Agent Apart</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">Intuitive analytics that feel like a conversation, delivering insights when you need them.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                    <div class="w-12 h-12 bg-primary rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-comments text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-secondary mb-3">Natural Language Queries</h3>
+                    <p class="text-gray-600">Just fire off queries in plain English text or drop a voice message. No complex dashboards or technical skills required.</p>
+                </div>
+                
+                <div class="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                    <div class="w-12 h-12 bg-primary rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-bolt text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-secondary mb-3">Instant Insights</h3>
+                    <p class="text-gray-600">Get tailored insights, risk assessments, and smart remedies on the spot. Uncover hidden patterns in seconds.</p>
+                </div>
+                
+                <div class="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                    <div class="w-12 h-12 bg-primary rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-shield-alt text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-secondary mb-3">Salesforce Native</h3>
+                    <p class="text-gray-600">Seamless, secure integration built right on the Salesforce platform. No external dependencies or complex setups.</p>
+                </div>
+                
+                <div class="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                    <div class="w-12 h-12 bg-primary rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-chart-line text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-secondary mb-3">Explosive Sales Growth</h3>
+                    <p class="text-gray-600">Drive revenue growth by spotting untapped opportunities and optimizing your sales pipeline with data-driven insights.</p>
+                </div>
+                
+                <div class="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                    <div class="w-12 h-12 bg-primary rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-users text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-secondary mb-3">Team Performance</h3>
+                    <p class="text-gray-600">Supercharge team performance by identifying bottlenecks and providing actionable recommendations for improvement.</p>
+                </div>
+                
+                <div class="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                    <div class="w-12 h-12 bg-primary rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-cogs text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-secondary mb-3">Operational Efficiency</h3>
+                    <p class="text-gray-600">Swiftly eliminate bottlenecks and optimize operations for peak efficiency across your entire organization.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Use Cases Section -->
+    <section id="use-cases" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-secondary mb-4">Transform Your Decision Making</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">Designed exclusively for C-suite, sales and service leaders who demand actionable insights.</p>
+            </div>
+            
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <img src="https://picsum.photos/600/400?random=1" alt="Executive dashboard showing key business metrics" class="w-full rounded-xl shadow-lg" loading="lazy">
+                </div>
+                <div class="space-y-8">
+                    <div class="flex items-start space-x-4">
+                        <div class="w-8 h-8 bg-primary rounded-full flex-shrink-0 flex items-center justify-center mt-1">
+                            <i class="fas fa-crown text-white text-sm"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-secondary mb-2">For C-Suite Executives</h3>
+                            <p class="text-gray-600">Lead with confidence and foresight. Get comprehensive risk assessments and strategic insights that drive business growth without waiting on IT teams.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start space-x-4">
+                        <div class="w-8 h-8 bg-primary rounded-full flex-shrink-0 flex items-center justify-center mt-1">
+                            <i class="fas fa-chart-bar text-white text-sm"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-secondary mb-2">For Sales Leaders</h3>
+                            <p class="text-gray-600">Uncover hidden patterns that drive explosive sales growth. Identify untapped revenue streams and optimize your sales strategy in real-time.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start space-x-4">
+                        <div class="w-8 h-8 bg-primary rounded-full flex-shrink-0 flex items-center justify-center mt-1">
+                            <i class="fas fa-headset text-white text-sm"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-secondary mb-2">For Service Leaders</h3>
+                            <p class="text-gray-600">Swiftly eliminate bottlenecks that slow you down. Supercharge team performance and deliver exceptional customer service experiences.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo Section -->
+    <section class="py-20 bg-gradient-to-r from-primary to-secondary text-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-3xl md:text-4xl font-bold mb-6">See QuickTell Agent in Action</h2>
+                <p class="text-xl mb-8 text-blue-100">Watch how natural language queries transform into actionable business insights.</p>
+                <div class="bg-white/10 backdrop-blur-sm rounded-xl p-8 mb-8">
+                    <div class="aspect-video bg-black/20 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-play-circle text-6xl text-white/70"></i>
+                    </div>
+                </div>
+                <button class="bg-accent text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-orange-600 transition-colors">Watch Demo Video</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-20 bg-light">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-secondary mb-4">Simple, Transparent Pricing</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">Choose the plan that fits your organization's needs.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                <div class="bg-white rounded-xl shadow-sm border border-gray-200 hover:shadow-md transition-shadow">
+                    <div class="p-8 border-b border-gray-200">
+                        <h3 class="text-2xl font-bold text-secondary mb-2">Starter</h3>
+                        <div class="flex items-baseline mb-4">
+                            <span class="text-4xl font-bold text-secondary">$99</span>
+                            <span class="text-gray-500 ml-2">/user/month</span>
+                        </div>
+                        <p class="text-gray-600">Perfect for small teams getting started with data analytics.</p>
+                    </div>
+                    <div class="p-8">
+                        <ul class="space-y-4 mb-8">
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-primary mr-3"></i>
+                                <span>Up to 5 users</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-primary mr-3"></i>
+                                <span>Basic analytics</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-primary mr-3"></i>
+                                <span>Standard support</span>
+                            </li>
+                            <li class="flex items-center text-gray-400">
+                                <i class="fas fa-times mr-3"></i>
+                                <span>Advanced reporting</span>
+                            </li>
+                            <li class="flex items-center text-gray-400">
+                                <i class="fas fa-times mr-3"></i>
+                                <span>Custom integrations</span>
+                            </li>
+                        </ul>
+                        <button class="w-full bg-gray-100 text-secondary py-3 rounded-lg font-semibold hover:bg-gray-200 transition-colors">Get Started</button>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-lg border-2 border-primary relative">
+                    <div class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                        <span class="bg-primary text-white px-4 py-2 rounded-full text-sm font-semibold">Most Popular</span>
+                    </div>
+                    <div class="p-8 border-b border-gray-200">
+                        <h3 class="text-2xl font-bold text-secondary mb-2">Professional</h3>
+                        <div class="flex items-baseline mb-4">
+                            <span class="text-4xl font-bold text-secondary">$199</span>
+                            <span class="text-gray-500 ml-2">/user/month</span>
+                        </div>
+                        <p class="text-gray-600">Ideal for growing organizations with advanced analytics needs.</p>
+                    </div>
+                    <div class="p-8">
+                        <ul class="space-y-4 mb-8">
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-primary mr-3"></i>
+                                <span>Up to 25 users</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-primary mr-3"></i>
+                                <span>Advanced analytics</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-primary mr-3"></i>
+                                <span>Priority support</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-primary mr-3"></i>
+                                <span>Custom reporting</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-primary mr-3"></i>
+                                <span>API access</span>
+                            </li>
+                        </ul>
+                        <button class="w-full bg-primary text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors">Start Free Trial</button>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-sm border border-gray-200 hover:shadow-md transition-shadow">
+                    <div class="p-8 border-b border-gray-200">
+                        <h3 class="text-2xl font-bold text-secondary mb-2">Enterprise</h3>
+                        <div class="flex items-baseline mb-4">
+                            <span class="text-4xl font-bold text-secondary">Custom</span>
+                        </div>
+                        <p class="text-gray-600">For large organizations requiring custom solutions and dedicated support.</p>
+                    </div>
+                    <div class="p-8">
+                        <ul class="space-y-4 mb-8">
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-primary mr-3"></i>
+                                <span>Unlimited users</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-primary mr-3"></i>
+                                <span>Enterprise analytics</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-primary mr-3"></i>
+                                <span>24/7 dedicated support</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-primary mr-3"></i>
+                                <span>Custom integrations</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-primary mr-3"></i>
+                                <span>On-premise deployment</span>
+                            </li>
+                        </ul>
+                        <button class="w-full bg-gray-100 text-secondary py-3 rounded-lg font-semibold hover:bg-gray-200 transition-colors">Contact Sales</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="contact" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-3xl md:text-4xl font-bold text-secondary mb-6">Ready to Transform Your Business?</h2>
+                <p class="text-xl text-gray-600 mb-8">Let's chat about piloting QuickTell Agent — this could be the edge your business has been craving!</p>
+                <div class="bg-light rounded-2xl p-8 md:p-12">
+                    <form class="space-y-6 max-w-md mx-auto">
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <input type="text" placeholder="First Name" class="px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                            <input type="text" placeholder="Last Name" class="px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                        </div>
+                        <input type="email" placeholder="Work Email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                        <input type="text" placeholder="Company" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                        <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                            <option>Select Your Role</option>
+                            <option>C-Suite Executive</option>
+                            <option>Sales Leader</option>
+                            <option>Service Leader</option>
+                            <option>IT Manager</option>
+                            <option>Other</option>
+                        </select>
+                        <button type="submit" class="w-full bg-primary text-white py-4 rounded-lg font-semibold hover:bg-secondary transition-colors">Schedule a Demo</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-secondary text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <img src="logo.png" alt="QuickTell Agent Logo" class="w-8 h-8 object-contain">
+                        <span class="text-xl font-bold">QuickTell Agent</span>
+                    </div>
+                    <p class="text-blue-200">Transforming data into strategic insights for Salesforce leaders.</p>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Product</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#features" class="text-blue-200 hover:text-white transition-colors" onclick="event.preventDefault(); scrollToSection('features')">Features</a></li>
+                        <li><a href="#use-cases" class="text-blue-200 hover:text-white transition-colors" onclick="event.preventDefault(); scrollToSection('use-cases')">Use Cases</a></li>
+                        <li><a href="#pricing" class="text-blue-200 hover:text-white transition-colors" onclick="event.preventDefault(); scrollToSection('pricing')">Pricing</a></li>
+                        <li><a href="#" class="text-blue-200 hover:text-white transition-colors">Security</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Company</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-blue-200 hover:text-white transition-colors">About Us</a></li>
+                        <li><a href="#" class="text-blue-200 hover:text-white transition-colors">Careers</a></li>
+                        <li><a href="#" class="text-blue-200 hover:text-white transition-colors">Blog</a></li>
+                        <li><a href="#" class="text-blue-200 hover:text-white transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Connect</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-blue-200 hover:text-white transition-colors"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-blue-200 hover:text-white transition-colors"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="text-blue-200 hover:text-white transition-colors"><i class="fab fa-facebook"></i></a>
+                    </div>
+                    <div class="mt-4">
+                        <p class="text-blue-200">sales@quicktellagent.com</p>
+                        <p class="text-blue-200">+1 (555) 123-4567</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-blue-800 mt-8 pt-8 text-center text-blue-200">
+                <p>&copy; 2024 QuickTell Agent. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling function
+        function scrollToSection(sectionId) {
+            const element = document.getElementById(sectionId);
+            if (element) {
+                element.scrollIntoView({ 
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        }
+
+        // Form submission handler
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.querySelector('form');
+            if (form) {
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    alert("Thank you for your interest! Our team will contact you shortly to schedule your demo.");
+                    form.reset();
+                });
+            }
+        });
+    </script>
+</body>
+</html>
