@@ -33,7 +33,7 @@
         <nav class="container mx-auto px-4 py-4">
             <div class="flex justify-between items-center">
                 <div class="flex items-center space-x-2">
-                    <img src="QuickTellLogo.png" alt="QuickTell Agent Logo" class="w-10 h-10 object-contain">
+                    <img src="logo.png" alt="QuickTell Agent Logo" class="w-10 h-10 object-contain">
                     <span class="text-xl font-bold text-secondary">QuickTell Agent</span>
                 </div>
                 <div class="hidden md:flex space-x-8">
@@ -183,11 +183,20 @@
                 <h2 class="text-3xl md:text-4xl font-bold mb-6">See QuickTell Agent in Action</h2>
                 <p class="text-xl mb-8 text-blue-100">Watch how natural language queries transform into actionable business insights.</p>
                 <div class="bg-white/10 backdrop-blur-sm rounded-xl p-8 mb-8">
-                    <div class="aspect-video bg-black/20 rounded-lg flex items-center justify-center">
-                        <i class="fas fa-play-circle text-6xl text-white/70"></i>
+                    <div class="aspect-video bg-black rounded-lg overflow-hidden">
+                        <!-- Self-hosted Video -->
+                        <video 
+                            id="demoVideo"
+                            class="w-full h-full"
+                            controls
+                            preload="metadata">
+                            <source src="QuickTellDemo.mp4" type="video/mp4">
+                            <!--<source src="demo-video.webm" type="video/webm">-->
+                            Your browser does not support the video tag.
+                        </video>
                     </div>
                 </div>
-                <button class="bg-accent text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-orange-600 transition-colors">Watch Demo Video</button>
+                <p class="text-sm text-blue-100">Experience the power of conversational analytics in real-time</p>
             </div>
         </div>
     </section>
