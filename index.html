@@ -111,12 +111,69 @@
         .hero {
             margin-top: 70px;
             height: calc(100vh - 70px);
-            min-height: 500px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 600px;
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
+            overflow: hidden;
+        }
+
+        .hero-slider {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .hero-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .hero-slide.active {
+            opacity: 1;
+        }
+
+        .hero-slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.85) 0%, rgba(99, 102, 241, 0.85) 100%);
+        }
+
+        /* Hero slide backgrounds */
+        .slide-1 {
+            background-image: url('https://images.unsplash.com/photo-1551434678-e076c223a692?w=1920&q=80');
+        }
+
+        .slide-2 {
+            background-image: url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1920&q=80');
+        }
+
+        .slide-3 {
+            background-image: url('https://images.unsplash.com/photo-1552664730-d307ca884978?w=1920&q=80');
+        }
+
+        .slide-4 {
+            background-image: url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1920&q=80');
+        }
+
+        .slide-5 {
+            background-image: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1920&q=80');
         }
 
         .hero-overlay {
@@ -125,7 +182,39 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Slide indicators */
+        .slide-indicators {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 12px;
+            z-index: 3;
+        }
+
+        .indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid rgba(255, 255, 255, 0.8);
+        }
+
+        .indicator.active {
+            background: white;
+            width: 40px;
+            border-radius: 6px;
+        }
+
+        .indicator:hover {
+            background: rgba(255, 255, 255, 0.8);
         }
 
         .hero-content {
@@ -207,7 +296,7 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
         }
 
@@ -551,47 +640,66 @@
             </ul>
         </div>
         <div id="home" class="hero">
+            <div class="hero-slider">
+                <div class="hero-slide slide-1 active"></div>
+                <div class="hero-slide slide-2"></div>
+                <div class="hero-slide slide-3"></div>
+                <div class="hero-slide slide-4"></div>
+                <div class="hero-slide slide-5"></div>
+            </div>
             <div class="hero-overlay">
                 <div class="hero-content">
-                    <h1>Empowering Businesses with Top Talent</h1>
+                    <h1>Tech Innovation Meets Talent Excellence</h1>
                     <p>
-                        Discover the perfect blend of expertise and innovation to drive
-                        your business forward. Let us help you build a team that excels.
+                        Transforming businesses through cutting-edge AI-powered data insights and strategic talent solutions. 
+                        We don't just find talent—we build intelligent systems that drive exponential growth.
                     </p>
                     <div class="hero-buttons">
-                        <a href="#services" class="btn-primary">Explore Services</a>
-                        <a href="#contact" class="btn-secondary">Contact Us</a>
+                        <a href="#Products" class="btn-primary">Discover QuickTell</a>
+                        <a href="#services" class="btn-secondary">Our Services</a>
                     </div>
                 </div>
+            </div>
+            <div class="slide-indicators">
+                <div class="indicator active" data-slide="0"></div>
+                <div class="indicator" data-slide="1"></div>
+                <div class="indicator" data-slide="2"></div>
+                <div class="indicator" data-slide="3"></div>
+                <div class="indicator" data-slide="4"></div>
             </div>
         </div>
     </header>
 
     <section id="services" class="services section">
-        <h2 class="section-title">Our Expertise</h2>
+        <h2 class="section-title">What We Do</h2>
+        <p class="section-subtitle">Innovation-driven technology solutions paired with world-class talent acquisition</p>
         <div class="services-grid">
             <div class="service">
-                <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Permanent Hiring" />
-                <h3>Permanent Hiring</h3>
+                <img src="https://cdn-icons-png.flaticon.com/512/4341/4341139.png" alt="AI Product Development" />
+                <h3>AI-Powered Products</h3>
                 <p>
-                    Connect with industry-leading professionals committed to driving
-                    your company's long-term success.
+                    Revolutionary data analytics solutions built on Salesforce. Our flagship QuickTell Agent transforms raw data into strategic insights instantly.
+                </p>
+            </div>
+            <div class="service">
+                <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Permanent Hiring" />
+                <h3>Strategic Talent Acquisition</h3>
+                <p>
+                    Connect with industry-leading tech professionals who drive innovation and deliver measurable results for your organization.
                 </p>
             </div>
             <div class="service">
                 <img src="https://cdn-icons-png.flaticon.com/512/1087/1087923.png" alt="Contract Staffing" />
-                <h3>Contract Staffing</h3>
+                <h3>Flexible Tech Staffing</h3>
                 <p>
-                    Flexible staffing models that empower businesses to scale rapidly
-                    without compromising on quality.
+                    Scale your technical teams rapidly with our contract staffing solutions—access specialized expertise exactly when you need it.
                 </p>
             </div>
             <div class="service">
                 <img src="https://cdn-icons-png.flaticon.com/512/3135/3135789.png" alt="Executive Search" />
-                <h3>Executive Search</h3>
+                <h3>C-Suite & Leadership Search</h3>
                 <p>
-                    Top-tier executive talent for leadership roles that define and shape
-                    the future of your organization.
+                    Elite executive talent for technology leadership roles that transform organizations and accelerate digital transformation.
                 </p>
             </div>
         </div>
@@ -599,21 +707,27 @@
 
     <section id="Products" class="about section">
         <div class="about-content">
-            <h2>QuickTell Agent</h2>
+            <h2>🚀 QuickTell Agent: Your AI Data Intelligence Partner</h2>
             <p>
-                QuickTell Agent — our game-changing data analytics powerhouse built right on the Salesforce platform, designed exclusively for C suite, sales and service leaders who demand actionable insights without the hassle. 
-                Imagine unlocking the full potential of your organization's data in seconds: it dives deep into every dataset, uncovering hidden patterns that drive explosive sales growth, supercharge team performance, 
-                and swiftly eliminate bottlenecks that slow you down. Whether you're spotting untapped revenue streams or optimizing operations for peak efficiency, QuickTell Agent turns raw numbers into strategic gold, 
-                empowering you to lead with confidence and foresight.
+                <strong>Transform data chaos into strategic clarity.</strong> QuickTell Agent is our revolutionary AI-powered analytics platform, 
+                built natively on Salesforce to give C-suite executives, sales leaders, and service managers instant access to game-changing insights.
             </p>
             <p>
-                What sets QuickTell Agent apart? It's as intuitive as a conversation — just fire off queries in plain English text or even drop a voice message, and it delivers tailored insights, risk assessments, 
-                and smart remedies on the spot. No more wrestling with complex dashboards or waiting on IT, it's all seamless, secure, and Salesforce-native for effortless integration.
-                Ready to transform how your exec team makes decisions?
+                Imagine unlocking hidden revenue patterns, predicting customer behavior, and identifying operational bottlenecks—all in real-time. 
+                QuickTell Agent analyzes massive datasets instantly, revealing opportunities your competitors are missing and delivering actionable 
+                intelligence that drives measurable growth.
             </p>
-            <p>Let's chat about piloting it — this could be the edge your business has been craving!</p>
-            <p>Partner with TechXlnc — where your success is our passion.</p>
-            <a href="#contact" class="btn-primary">Partner With Us</a>
+            <p>
+                <strong>Zero technical complexity.</strong> Ask questions in plain English or drop a voice message. Get instant answers, risk assessments, 
+                and strategic recommendations—no coding, no complex dashboards, no IT tickets. It's conversational AI that speaks your language.
+            </p>
+            <p>
+                <strong>Enterprise-grade security. Salesforce-native integration. Lightning-fast deployment.</strong>
+            </p>
+            <p style="margin-top: 2rem; font-size: 1.2rem; font-weight: 600;">
+                Ready to give your leadership team their competitive edge? Let's explore how QuickTell Agent can transform your decision-making.
+            </p>
+            <a href="#contact" class="btn-primary">Schedule a Demo</a>
         </div>
     </section>
 
@@ -746,6 +860,71 @@
             e.preventDefault();
             alert('Thank you for your message! We will get back to you soon.');
             contactForm.reset();
+        });
+
+        // Hero slider functionality - Initialize after DOM loads
+        window.addEventListener('DOMContentLoaded', function() {
+            const slides = document.querySelectorAll('.hero-slide');
+            const indicators = document.querySelectorAll('.indicator');
+            let currentSlide = 0;
+            const slideInterval = 5000; // 5 seconds per slide
+            let slideTimer;
+
+            console.log('Slider initialized:', slides.length, 'slides found');
+
+            function showSlide(index) {
+                console.log('Showing slide:', index);
+                
+                // Remove active class from all slides and indicators
+                slides.forEach(slide => slide.classList.remove('active'));
+                indicators.forEach(indicator => indicator.classList.remove('active'));
+                
+                // Add active class to current slide and indicator
+                if (slides[index]) {
+                    slides[index].classList.add('active');
+                }
+                if (indicators[index]) {
+                    indicators[index].classList.add('active');
+                }
+            }
+
+            function nextSlide() {
+                currentSlide = (currentSlide + 1) % slides.length;
+                showSlide(currentSlide);
+            }
+
+            // Start auto-advance slides
+            function startSlideshow() {
+                slideTimer = setInterval(nextSlide, slideInterval);
+                console.log('Slideshow started');
+            }
+
+            function stopSlideshow() {
+                clearInterval(slideTimer);
+                console.log('Slideshow stopped');
+            }
+
+            // Manual slide navigation
+            indicators.forEach((indicator, index) => {
+                indicator.addEventListener('click', function() {
+                    console.log('Indicator clicked:', index);
+                    currentSlide = index;
+                    showSlide(currentSlide);
+                    stopSlideshow();
+                    startSlideshow();
+                });
+            });
+
+            // Pause on hover
+            const heroSection = document.querySelector('.hero');
+            if (heroSection) {
+                heroSection.addEventListener('mouseenter', stopSlideshow);
+                heroSection.addEventListener('mouseleave', startSlideshow);
+            }
+
+            // Initialize first slide and start slideshow
+            showSlide(0);
+            startSlideshow();
         });
     </script>
 </body>
