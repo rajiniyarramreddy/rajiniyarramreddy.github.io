@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>QwikTel Agent — Ask your Salesforce pipeline anything</title>
+<meta name="description" content="QwikTel is the AI analyst built natively on Salesforce. Ask any question in plain English — get the chart, the executive summary, and the next move in seconds.">
+<style>
+  :root{
+    --navy-900:#070d1c;
+    --navy-800:#0a1628;
+    --navy-700:#0f2040;
+    --blue-600:#0066CC;
+    --blue-500:#0070D2;
+    --blue-400:#1589EE;
+    --ice:#cadcfc;
+    --slate-300:#94a3b8;
+    --slate-200:#cbd5e1;
+    --slate-100:#e2e8f0;
+    --white:#ffffff;
+    --bg:#f7f9fc;
+    --card:#ffffff;
+    --ink:#0b1220;
+    --ink-soft:#475569;
+    --green:#04844B;
+    --red:#c0392b;
+    --radius:14px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{font-family:'Inter','SF Pro Display','Segoe UI',system-ui,-apple-system,sans-serif;color:var(--ink);background:var(--white);line-height:1.55;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  .container{max-width:1180px;margin:0 auto;padding:0 24px}
+
+  /* NAV */
+  nav{position:sticky;top:0;z-index:50;background:rgba(7,13,28,.85);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.06)}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:68px;color:var(--white)}
+  .logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:20px;letter-spacing:-.01em}
+  .logo-mark{width:30px;height:30px;border-radius:8px;background:linear-gradient(135deg,#1589EE 0%,#0052A3 100%);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:#fff;box-shadow:0 4px 14px rgba(21,137,238,.4)}
+  .nav-links{display:flex;gap:32px;font-size:15px;color:var(--slate-200)}
+  .nav-links a:hover{color:var(--white)}
+  .nav-cta{display:flex;gap:12px;align-items:center}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:10px;font-weight:600;font-size:15px;transition:all .2s;cursor:pointer;border:none}
+  .btn-primary{background:var(--blue-400);color:#fff;box-shadow:0 6px 20px rgba(21,137,238,.35)}
+  .btn-primary:hover{background:#2299FF;transform:translateY(-1px);box-shadow:0 10px 28px rgba(21,137,238,.45)}
+  .btn-ghost{background:transparent;color:var(--white);border:1px solid rgba(255,255,255,.18)}
+  .btn-ghost:hover{background:rgba(255,255,255,.06)}
+  .btn-light{background:#fff;color:var(--navy-800);border:1px solid #e6ebf3}
+  .btn-light:hover{background:#f4f7fb}
+
+  /* HERO */
+  .hero{position:relative;background:radial-gradient(ellipse at top right,rgba(21,137,238,.18) 0%,transparent 55%),radial-gradient(ellipse at bottom left,rgba(0,82,163,.22) 0%,transparent 50%),linear-gradient(180deg,#070d1c 0%,#0a1628 60%,#0f2040 100%);color:var(--white);padding:92px 0 110px;overflow:hidden}
+  .hero::before{content:"";position:absolute;inset:0;background-image:radial-gradient(circle at 1px 1px,rgba(255,255,255,.06) 1px,transparent 0);background-size:32px 32px;opacity:.4;pointer-events:none}
+  .hero-inner{position:relative;display:grid;grid-template-columns:1.05fr .95fr;gap:64px;align-items:center}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border-radius:999px;background:rgba(21,137,238,.12);border:1px solid rgba(21,137,238,.3);color:#79bfff;font-size:13px;font-weight:600;letter-spacing:.02em;margin-bottom:22px}
+  .eyebrow .dot{width:7px;height:7px;border-radius:50%;background:#1589EE;box-shadow:0 0 0 4px rgba(21,137,238,.25)}
+  h1{font-size:60px;font-weight:800;line-height:1.05;letter-spacing:-.025em;margin-bottom:24px}
+  h1 .accent{background:linear-gradient(120deg,#79bfff 0%,#1589EE 50%,#0070D2 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .hero-sub{font-size:20px;color:#b8c5d6;margin-bottom:36px;max-width:580px;line-height:1.55}
+  .hero-cta{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:42px}
+  .hero-meta{display:flex;align-items:center;gap:20px;color:#8fa0b9;font-size:14px}
+  .hero-meta svg{flex-shrink:0}
+
+  /* PHONE MOCKUP */
+  .phone{position:relative;width:340px;height:680px;margin:0 auto;background:linear-gradient(180deg,#0d1729 0%,#070d1c 100%);border-radius:42px;border:1px solid rgba(255,255,255,.1);box-shadow:0 50px 100px -20px rgba(0,0,0,.6),0 30px 60px -30px rgba(21,137,238,.3),inset 0 1px 0 rgba(255,255,255,.08);padding:18px;overflow:hidden}
+  .phone::before{content:"";position:absolute;top:18px;left:50%;transform:translateX(-50%);width:120px;height:28px;background:#000;border-radius:0 0 16px 16px;z-index:5}
+  .phone-screen{width:100%;height:100%;background:#0a1322;border-radius:28px;padding:52px 18px 18px;display:flex;flex-direction:column;gap:12px;font-size:13px;color:#cfd8e8}
+  .chat-header{display:flex;align-items:center;justify-content:space-between;padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,.06)}
+  .chat-title{font-weight:700;color:#fff;font-size:15px}
+  .chat-new{font-size:11px;color:#79bfff;background:rgba(21,137,238,.1);padding:4px 10px;border-radius:6px;border:1px solid rgba(21,137,238,.2)}
+  .bubble-user{align-self:flex-end;background:linear-gradient(135deg,#1589EE 0%,#0070D2 100%);color:#fff;padding:10px 14px;border-radius:14px 14px 4px 14px;max-width:85%;font-weight:500;font-size:13px;box-shadow:0 6px 16px rgba(21,137,238,.3)}
+  .bubble-bot{background:#142235;border:1px solid rgba(255,255,255,.06);padding:12px 14px;border-radius:14px 14px 14px 4px;max-width:90%;font-size:12.5px;line-height:1.5;color:#dde6f4}
+  .bubble-bot strong{color:#79bfff;font-weight:700}
+  .chart-mini{margin-top:10px;display:flex;align-items:flex-end;gap:6px;height:60px;padding-top:8px;border-top:1px dashed rgba(255,255,255,.08)}
+  .bar{flex:1;border-radius:3px 3px 0 0;background:linear-gradient(180deg,#1589EE,#0052A3)}
+  .bar-faded{flex:1;border-radius:3px 3px 0 0;background:rgba(255,255,255,.12)}
+  .chat-input{margin-top:auto;background:#142235;border:1px solid rgba(255,255,255,.08);border-radius:24px;padding:12px 16px;color:#6b7a91;font-size:12px;display:flex;align-items:center;justify-content:space-between}
+  .chat-input span:last-child{width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,#1589EE,#0070D2);display:flex;align-items:center;justify-content:center;color:#fff;font-size:11px;font-weight:700}
+
+  /* SOCIAL PROOF */
+  .proof{padding:48px 0;background:var(--navy-900);color:#8fa0b9;text-align:center;border-top:1px solid rgba(255,255,255,.04)}
+  .proof-label{font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;margin-bottom:24px;color:#6b7a91}
+  .proof-logos{display:flex;justify-content:center;align-items:center;gap:56px;flex-wrap:wrap;opacity:.65;font-weight:700;font-size:18px;letter-spacing:-.01em}
+  .proof-logos span{padding:10px 0}
+  .proof-quote{margin-top:36px;font-size:22px;font-weight:500;color:#dde6f4;font-style:italic;max-width:780px;margin-left:auto;margin-right:auto;line-height:1.5}
+  .proof-quote::before{content:"\201C ";color:#1589EE;font-weight:700;font-size:30px;font-style:normal}
+  .proof-quote::after{content:" \201D";color:#1589EE;font-weight:700;font-size:30px;font-style:normal}
+  .proof-attr{margin-top:14px;font-size:14px;color:#79bfff;font-weight:600;font-style:normal}
+
+  /* SECTION SHELL */
+  section{padding:96px 0}
+  .section-eyebrow{font-size:13px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--blue-500);margin-bottom:14px;text-align:center}
+  h2{font-size:44px;font-weight:800;line-height:1.1;letter-spacing:-.02em;text-align:center;margin-bottom:18px;max-width:780px;margin-left:auto;margin-right:auto}
+  .section-sub{font-size:18px;color:var(--ink-soft);text-align:center;max-width:680px;margin:0 auto 64px;line-height:1.6}
+
+  /* PROBLEM */
+  .problem{background:var(--bg)}
+  .problem-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+  .problem-text h2{text-align:left;margin:0 0 22px}
+  .problem-text p{font-size:18px;color:var(--ink-soft);margin-bottom:18px;line-height:1.65}
+  .problem-text .first-line{font-size:22px;color:var(--ink);font-weight:600;line-height:1.4}
+  .problem-card{background:#fff;border-radius:18px;padding:32px;box-shadow:0 30px 60px -20px rgba(15,32,64,.18),0 8px 20px -10px rgba(15,32,64,.08);border:1px solid #eef2f8}
+  .pc-row{display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-bottom:1px solid #eef2f8}
+  .pc-row:last-child{border-bottom:none}
+  .pc-label{color:#475569;font-size:14px}
+  .pc-time{font-weight:700;color:#0b1220;font-size:14px}
+  .pc-tag{display:inline-block;padding:3px 10px;border-radius:6px;font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+  .pc-tag-red{background:#fef2f2;color:#c0392b}
+  .pc-tag-green{background:#ecfdf5;color:#04844B}
+  .pc-divider{margin:18px 0;border:none;border-top:1px dashed #d6dfe9}
+  .pc-summary{display:flex;justify-content:space-between;font-weight:700}
+
+  /* FEATURES */
+  .feature-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:28px;margin-top:32px}
+  .feature{padding:36px;border-radius:18px;background:#fff;border:1px solid #eef2f8;transition:all .25s;position:relative;overflow:hidden}
+  .feature:hover{transform:translateY(-4px);box-shadow:0 20px 50px -20px rgba(15,32,64,.18);border-color:#dce6f5}
+  .feature-icon{width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,#1589EE 0%,#0052A3 100%);display:flex;align-items:center;justify-content:center;color:#fff;margin-bottom:20px}
+  .feature h3{font-size:22px;font-weight:700;margin-bottom:10px;letter-spacing:-.01em}
+  .feature p{color:var(--ink-soft);font-size:16px;line-height:1.6}
+
+  /* HOW IT WORKS */
+  .how{background:linear-gradient(180deg,#070d1c 0%,#0a1628 100%);color:#fff}
+  .how h2{color:#fff}
+  .how .section-sub{color:#b8c5d6}
+  .how .section-eyebrow{color:#79bfff}
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-top:32px}
+  .step{padding:36px 28px;border-radius:18px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);position:relative}
+  .step-num{position:absolute;top:-18px;left:28px;width:42px;height:42px;border-radius:12px;background:linear-gradient(135deg,#1589EE 0%,#0052A3 100%);color:#fff;font-weight:800;font-size:18px;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 20px rgba(21,137,238,.4)}
+  .step h3{font-size:20px;margin:18px 0 10px;color:#fff}
+  .step p{color:#b8c5d6;font-size:15px;line-height:1.6}
+
+  /* PROMPTS */
+  .prompts{background:var(--bg)}
+  .prompt-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:32px}
+  .prompt-card{background:#fff;padding:24px 28px;border-radius:14px;border:1px solid #e6ebf3;display:flex;align-items:center;gap:14px;transition:all .2s}
+  .prompt-card:hover{border-color:#1589EE;box-shadow:0 8px 20px -8px rgba(21,137,238,.25);transform:translateX(4px)}
+  .prompt-icon{flex-shrink:0;width:36px;height:36px;border-radius:10px;background:#eef5ff;color:#0070D2;display:flex;align-items:center;justify-content:center;font-weight:700}
+  .prompt-text{font-size:16px;color:var(--ink);font-weight:500;font-style:italic}
+
+  /* SECURITY */
+  .security{background:#fff}
+  .security-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:24px}
+  .sec-card{padding:28px 24px;text-align:left;border-radius:16px;background:linear-gradient(180deg,#fff,#f7faff);border:1px solid #e6ebf3}
+  .sec-icon{width:40px;height:40px;border-radius:10px;background:#eef5ff;color:#0070D2;display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+  .sec-card h4{font-size:16px;font-weight:700;margin-bottom:8px}
+  .sec-card p{font-size:14px;color:var(--ink-soft);line-height:1.55}
+
+  /* PRICING */
+  .pricing{background:var(--bg)}
+  .price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:32px}
+  .price-card{background:#fff;border-radius:18px;padding:36px 32px;border:1px solid #e6ebf3;position:relative;transition:all .25s}
+  .price-card.featured{background:linear-gradient(180deg,#0a1628 0%,#0f2040 100%);color:#fff;border:1px solid #1589EE;transform:scale(1.04);box-shadow:0 30px 60px -20px rgba(21,137,238,.35)}
+  .price-card.featured h3,.price-card.featured .price{color:#fff}
+  .price-card.featured .price-sub{color:#b8c5d6}
+  .price-card.featured ul li{color:#dde6f4}
+  .price-card.featured ul li::before{color:#1589EE}
+  .featured-tag{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:#1589EE;color:#fff;font-size:11px;font-weight:700;letter-spacing:.1em;padding:6px 14px;border-radius:999px;text-transform:uppercase}
+  .price-card h3{font-size:18px;font-weight:700;margin-bottom:6px}
+  .price-sub{font-size:13px;color:var(--ink-soft);margin-bottom:20px}
+  .price{font-size:42px;font-weight:800;letter-spacing:-.02em;margin-bottom:4px}
+  .price small{font-size:15px;font-weight:500;color:var(--ink-soft)}
+  .price-card ul{list-style:none;margin:24px 0 28px;padding:0}
+  .price-card ul li{padding:9px 0;font-size:15px;color:var(--ink);display:flex;align-items:flex-start;gap:10px}
+  .price-card ul li::before{content:"\2713";color:#04844B;font-weight:800;flex-shrink:0}
+  .price-card .btn{width:100%;justify-content:center}
+
+  /* FAQ */
+  .faq{background:#fff}
+  .faq-list{max-width:780px;margin:0 auto}
+  .faq-item{border-bottom:1px solid #e6ebf3;padding:24px 0;cursor:pointer}
+  .faq-item summary{font-size:18px;font-weight:600;list-style:none;display:flex;justify-content:space-between;align-items:center;color:var(--ink)}
+  .faq-item summary::after{content:"+";font-size:26px;color:#0070D2;font-weight:300;transition:transform .2s}
+  .faq-item[open] summary::after{transform:rotate(45deg)}
+  .faq-item p{margin-top:14px;color:var(--ink-soft);font-size:16px;line-height:1.65}
+
+  /* FINAL CTA */
+  .final{background:linear-gradient(135deg,#070d1c 0%,#0052A3 100%);color:#fff;text-align:center;padding:96px 0;position:relative;overflow:hidden}
+  .final::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(21,137,238,.25) 0%,transparent 60%)}
+  .final-inner{position:relative;z-index:2}
+  .final h2{color:#fff;font-size:48px;max-width:760px;margin:0 auto 22px}
+  .final p{font-size:20px;color:#cfdcef;margin-bottom:36px}
+  .final .hero-cta{justify-content:center;display:flex;gap:14px;flex-wrap:wrap}
+
+  /* FOOTER */
+  footer{background:var(--navy-900);color:#7d8ba0;padding:56px 0 36px}
+  .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:40px}
+  .footer-brand p{margin-top:16px;color:#7d8ba0;font-size:14px;line-height:1.6;max-width:320px}
+  .footer-col h5{color:#fff;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:18px}
+  .footer-col a{display:block;color:#7d8ba0;font-size:14px;padding:6px 0;transition:color .2s}
+  .footer-col a:hover{color:#fff}
+  .footer-bottom{border-top:1px solid rgba(255,255,255,.06);padding-top:28px;display:flex;justify-content:space-between;align-items:center;font-size:13px;color:#5d6a80}
+
+  /* RESPONSIVE */
+  @media (max-width:960px){
+    h1{font-size:42px}
+    h2{font-size:32px}
+    .hero-inner,.problem-grid{grid-template-columns:1fr;gap:48px}
+    .feature-grid,.security-grid,.price-grid,.steps,.prompt-grid,.footer-grid{grid-template-columns:1fr}
+    .nav-links{display:none}
+    .price-card.featured{transform:none}
+    .phone{transform:scale(.9)}
+    .final h2{font-size:34px}
+    section{padding:64px 0}
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="container nav-inner">
+    <div class="logo">
+      <div class="logo-mark">QW</div>
+      <span>QwikTel</span>
+    </div>
+    <div class="nav-links">
+      <a href="#how">How it works</a>
+      <a href="#prompts">Use cases</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+    </div>
+    <div class="nav-cta">
+      <a href="#" class="btn btn-ghost">Sign in</a>
+      <a href="https://appexchange.salesforce.com/appxListingDetail?listingId=42f8bb17-de4a-4931-b754-3c6631475971" target="_blank" rel="noopener" class="btn btn-primary">Install free</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="container hero-inner">
+    <div>
+      <div class="eyebrow"><span class="dot"></span>Now live on the Salesforce AppExchange</div>
+      <h1>Stop hunting reports.<br><span class="accent">Start asking questions.</span></h1>
+      <p class="hero-sub">QwikTel is the AI analyst built natively on Salesforce. Ask anything in plain English — get the chart, the executive summary, and the next move in seconds.</p>
+      <div class="hero-cta">
+        <a href="https://appexchange.salesforce.com/appxListingDetail?listingId=42f8bb17-de4a-4931-b754-3c6631475971" target="_blank" rel="noopener" class="btn btn-primary">Try QwikTel on AppExchange &rarr;</a>
+        <a href="https://appexchange.salesforce.com/appxListingDetail?listingId=42f8bb17-de4a-4931-b754-3c6631475971" target="_blank" rel="noopener" class="btn btn-ghost">Install on AppExchange</a>
+      </div>
+      <div class="hero-meta">
+        <span>&#9989; 14-day free trial</span>
+        <span>&#9989; No credit card</span>
+        <span>&#9989; Setup in 10 min</span>
+      </div>
+    </div>
+
+    <!-- PHONE MOCKUP -->
+    <div>
+      <div class="phone">
+        <div class="phone-screen">
+          <div class="chat-header">
+            <div class="chat-title">QwikTel Analyzer</div>
+            <div class="chat-new">+ New</div>
+          </div>
+          <div class="bubble-user">Where are we losing revenue in the funnel compared to last quarter?</div>
+          <div class="bubble-bot">
+            <strong>Q3 2025</strong> Pipeline: <strong>$5.04M</strong> &middot; 62 opps<br>
+            <strong>Q4 2025</strong> Pipeline: <strong>$2.66M</strong> &middot; 26 opps<br>
+            Critical leakage: <strong>Proposal/Price Quote &minus;71%</strong> ($&minus;942K)
+            <div class="chart-mini">
+              <div class="bar" style="height:90%"></div>
+              <div class="bar-faded" style="height:24%"></div>
+              <div class="bar" style="height:78%"></div>
+              <div class="bar-faded" style="height:38%"></div>
+              <div class="bar" style="height:62%"></div>
+              <div class="bar-faded" style="height:18%"></div>
+              <div class="bar" style="height:50%"></div>
+              <div class="bar-faded" style="height:14%"></div>
+            </div>
+          </div>
+          <div class="bubble-user">What should I do about it?</div>
+          <div class="chat-input">
+            <span>Ask Analyzer&hellip;</span>
+            <span>&uarr;</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- SOCIAL PROOF -->
+<section class="proof" style="padding-top:56px;padding-bottom:72px">
+  <div class="container">
+    <div class="proof-label">Trusted by RevOps and sales leaders at growing B2B teams</div>
+    <div class="proof-logos">
+      <span>NORTHWIND</span>
+      <span>FUSION VENTURES</span>
+      <span>SUMMIT ENT.</span>
+      <span>TECHVISION</span>
+      <span>ECLIPSE SYSTEMS</span>
+    </div>
+    <p class="proof-quote">4 hours of pivot tables, replaced by one sentence.</p>
+    <p class="proof-attr">— Director of RevOps, Series B SaaS (QwikTel beta)</p>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section class="problem">
+  <div class="container problem-grid">
+    <div class="problem-text">
+      <div class="section-eyebrow" style="text-align:left">The Monday morning loop</div>
+      <h2>You already have the data. The dashboards are built.</h2>
+      <p class="first-line">But every Monday, someone still asks: where is the deal slipping? Which rep is on track? Why did Q4 collapse?</p>
+      <p>QwikTel turns those questions into instant answers — without a BI consultant, without a Slack thread, without an export to Excel. Native to Salesforce. Live on your data. Mobile-first.</p>
+    </div>
+    <div class="problem-card">
+      <div class="pc-row">
+        <div>
+          <div class="pc-tag pc-tag-red">Before QwikTel</div>
+          <div class="pc-label" style="margin-top:6px">Pipeline health for the QBR</div>
+        </div>
+        <div class="pc-time">~4h 30m</div>
+      </div>
+      <div class="pc-row">
+        <div class="pc-label">Pivot tables, exports, formatting</div>
+        <div class="pc-time" style="color:#c0392b">3h 12m</div>
+      </div>
+      <div class="pc-row">
+        <div class="pc-label">Slack threads &amp; verification</div>
+        <div class="pc-time" style="color:#c0392b">52m</div>
+      </div>
+      <hr class="pc-divider">
+      <div class="pc-row">
+        <div>
+          <div class="pc-tag pc-tag-green">With QwikTel</div>
+          <div class="pc-label" style="margin-top:6px">Same pipeline answer, with CTA</div>
+        </div>
+        <div class="pc-time" style="color:#04844B">~58 sec</div>
+      </div>
+      <div class="pc-summary" style="margin-top:18px;color:#0070D2">
+        <span>Time recovered per week</span><span>~6 hours</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section>
+  <div class="container">
+    <div class="section-eyebrow">What QwikTel does</div>
+    <h2>An analyst that lives inside Salesforce.</h2>
+    <p class="section-sub">Native, secure, and answers in the format your VP of Sales actually reads — chart, summary, and prioritized call to action.</p>
+    <div class="feature-grid">
+      <div class="feature">
+        <div class="feature-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+        </div>
+        <h3>Ask in plain English</h3>
+        <p>Natural-language queries against live Salesforce data. No SQL, no custom report builder, no BI training.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 3v18h18"/><rect x="7" y="13" width="3" height="5"/><rect x="12" y="9" width="3" height="9"/><rect x="17" y="5" width="3" height="13"/></svg>
+        </div>
+        <h3>Auto-generated visuals</h3>
+        <p>Charts, executive summaries, and call-to-action cards generated for every query. Ready to paste into a board update.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="6" y="2" width="12" height="20" rx="2"/><line x1="11" y1="18" x2="13" y2="18"/></svg>
+        </div>
+        <h3>Mobile-first</h3>
+        <p>Pipeline answers in your pocket. Designed for the train, the airport, and the 2 minutes before a 1:1.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3>Zero data exit</h3>
+        <p>Runs natively in your Salesforce org. User-scoped query history. Your data, your security boundary, your edition.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how" id="how">
+  <div class="container">
+    <div class="section-eyebrow">How it works</div>
+    <h2>Live in 10 minutes. Not 10 weeks.</h2>
+    <p class="section-sub">QwikTel is a managed AppExchange package. No data warehouse, no schema mapping, no implementation partner.</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h3>Install from AppExchange</h3>
+        <p>One-click managed package install. QwikTel reads your existing Sales Cloud objects out of the box.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h3>Assign permission set</h3>
+        <p>Grant <code style="background:rgba(255,255,255,.08);padding:2px 6px;border-radius:4px;color:#79bfff">QwikTelAgent_Access</code> to anyone you want using QwikTel. Field-level security inherited.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h3>Start asking</h3>
+        <p>Open the Analyzer tab on web or mobile. No model training. No prompt engineering. Just questions.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROMPTS -->
+<section class="prompts" id="prompts">
+  <div class="container">
+    <div class="section-eyebrow">Use cases</div>
+    <h2>Real questions our beta users ask every week.</h2>
+    <p class="section-sub">If your team is asking it on Monday morning, QwikTel can answer it before the coffee&rsquo;s cold.</p>
+    <div class="prompt-grid">
+      <div class="prompt-card"><div class="prompt-icon">?</div><div class="prompt-text">Where are we losing revenue in the funnel compared to last quarter?</div></div>
+      <div class="prompt-card"><div class="prompt-icon">?</div><div class="prompt-text">Which reps have the highest performance this quarter?</div></div>
+      <div class="prompt-card"><div class="prompt-icon">?</div><div class="prompt-text">Show me deals that slipped from this quarter to next.</div></div>
+      <div class="prompt-card"><div class="prompt-icon">?</div><div class="prompt-text">Build me an executive pipeline summary for the board.</div></div>
+      <div class="prompt-card"><div class="prompt-icon">?</div><div class="prompt-text">Which accounts went cold in the last 30 days?</div></div>
+      <div class="prompt-card"><div class="prompt-icon">?</div><div class="prompt-text">Top 10 opportunities at risk for this quarter, ranked.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SECURITY -->
+<section class="security">
+  <div class="container">
+    <div class="section-eyebrow">Built on Salesforce, not bolted on</div>
+    <h2>Your data never leaves your org.</h2>
+    <p class="section-sub">Every query, every visualization, every saved history record stays inside the security boundary you already trust.</p>
+    <div class="security-grid">
+      <div class="sec-card">
+        <div class="sec-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <h4>Native package</h4>
+        <p>Managed AppExchange install. No external warehouse, no ETL, no third-party data lake.</p>
+      </div>
+      <div class="sec-card">
+        <div class="sec-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 2"/></svg></div>
+        <h4>User-scoped history</h4>
+        <p>Each user&rsquo;s saved queries are visible only to them. Field-level security inherited from your org.</p>
+      </div>
+      <div class="sec-card">
+        <div class="sec-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <h4>Security review approved</h4>
+        <p>Passed Salesforce&rsquo;s AppExchange Security Review. SOC 2 Type II in progress.</p>
+      </div>
+      <div class="sec-card">
+        <div class="sec-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+        <h4>10-minute admin setup</h4>
+        <p>One permission set assignment. No code, no integration project, no consultant.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing" id="pricing">
+  <div class="container">
+    <div class="section-eyebrow">Pricing</div>
+    <h2>Simple, per-user, cancel anytime.</h2>
+    <p class="section-sub">Start free for 14 days. No credit card. No installation fee. No "talk to sales" gates on the core product.</p>
+    <div class="price-grid">
+      <div class="price-card">
+        <h3>Starter</h3>
+        <p class="price-sub">For small sales teams getting started</p>
+        <div class="price">$25 <small>USD /user/mo</small></div>
+        <ul>
+          <li>Up to 10 users</li>
+          <li>All core analytics queries</li>
+          <li>Mobile + desktop</li>
+          <li>30-day query history</li>
+          <li>Email support</li>
+        </ul>
+        <a href="https://appexchange.salesforce.com/appxListingDetail?listingId=42f8bb17-de4a-4931-b754-3c6631475971" target="_blank" rel="noopener" class="btn btn-light">Try QwikTel</a>
+      </div>
+      <div class="price-card featured">
+        <span class="featured-tag">Most popular</span>
+        <h3>Growth</h3>
+        <p class="price-sub">For RevOps-led teams at $10M&ndash;$200M ARR</p>
+        <div class="price">$49 <small>/user/mo</small></div>
+        <ul>
+          <li>Unlimited users</li>
+          <li>Custom dashboards &amp; saved prompts</li>
+          <li>Unlimited query history</li>
+          <li>Priority chat support</li>
+          <li>Quarterly pipeline review session</li>
+        </ul>
+        <a href="https://appexchange.salesforce.com/appxListingDetail?listingId=42f8bb17-de4a-4931-b754-3c6631475971" target="_blank" rel="noopener" class="btn btn-primary">Try QwikTel</a>
+      </div>
+      <div class="price-card">
+        <h3>Enterprise</h3>
+        <p class="price-sub">For 100+ seat orgs &amp; regulated industries</p>
+        <div class="price">Talk to sales</div>
+        <ul>
+          <li>SSO / SAML</li>
+          <li>Dedicated customer success</li>
+          <li>Custom data retention</li>
+          <li>Audit log export</li>
+          <li>SLA &amp; security questionnaires</li>
+        </ul>
+        <a href="https://appexchange.salesforce.com/appxListingDetail?listingId=42f8bb17-de4a-4931-b754-3c6631475971" target="_blank" rel="noopener" class="btn btn-light">Get the product</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="container">
+    <div class="section-eyebrow">FAQ</div>
+    <h2>The questions every Salesforce admin asks.</h2>
+    <p class="section-sub">If we missed yours, ping us — we'll answer in under 24 hours.</p>
+    <div class="faq-list">
+      <details class="faq-item" open>
+        <summary>Is my data leaving Salesforce?</summary>
+        <p>No. QwikTel is a managed AppExchange package that runs inside your Salesforce org. Queries, visualizations, and saved query history all live within your existing security boundary. We do not pipe your data to an external warehouse.</p>
+      </details>
+      <details class="faq-item">
+        <summary>What Salesforce edition do I need?</summary>
+        <p>Enterprise edition or higher (Enterprise, Unlimited, Performance, or Developer). QwikTel uses standard Sales Cloud objects and respects your field-level and record-level security model.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Do I need a data team to set this up?</summary>
+        <p>No. The entire admin setup is installing the managed package and assigning the <code>QwikTelAgent_Access</code> permission set. Most customers are live in under 10 minutes.</p>
+      </details>
+      <details class="faq-item">
+        <summary>How long is the free trial?</summary>
+        <p>14 days, with full access to every feature. No credit card required. Cancel anytime — no recovery emails, no guilt trips.</p>
+      </details>
+      <details class="faq-item">
+        <summary>How does QwikTel compare to Einstein / Tableau?</summary>
+        <p>Einstein and Tableau give you dashboards. QwikTel gives you answers. We're built for the moment a sales leader has a question and 30 seconds before the next meeting — not the moment they want to spend a week building a dashboard.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Can I customize the prompts and dashboards?</summary>
+        <p>Yes — on the Growth plan and above. Save your most-asked prompts, build custom dashboards, and share them with your team. Each user keeps their own history; shared dashboards stay in sync.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final" id="cta">
+  <div class="container final-inner">
+    <h2>Your pipeline already has the answers.</h2>
+    <p>QwikTel just makes them easier to ask for.</p>
+    <div class="hero-cta">
+      <a href="https://appexchange.salesforce.com/appxListingDetail?listingId=42f8bb17-de4a-4931-b754-3c6631475971" target="_blank" rel="noopener" class="btn btn-primary">Try QwikTel on AppExchange &rarr;</a>
+      <a href="https://appexchange.salesforce.com/appxListingDetail?listingId=42f8bb17-de4a-4931-b754-3c6631475971" target="_blank" rel="noopener" class="btn btn-ghost">See the product</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo" style="color:#fff">
+          <div class="logo-mark">QW</div>
+          <span>QwikTel</span>
+        </div>
+        <p>The AI analyst native to Salesforce. Ask your pipeline anything.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Product</h5>
+        <a href="#">Features</a>
+        <a href="#">Pricing</a>
+        <a href="https://appexchange.salesforce.com/appxListingDetail?listingId=42f8bb17-de4a-4931-b754-3c6631475971" target="_blank" rel="noopener">AppExchange</a>
+        <a href="#">Changelog</a>
+      </div>
+      <div class="footer-col">
+        <h5>Company</h5>
+        <a href="#">About</a>
+        <a href="#">LinkedIn</a>
+        <a href="#">Contact</a>
+        <a href="#">Careers</a>
+      </div>
+      <div class="footer-col">
+        <h5>Resources</h5>
+        <a href="#">Admin guide</a>
+        <a href="#">Security</a>
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 QwikTel by Techxlnc. All rights reserved.</span>
+      <span>Made on the Salesforce platform.</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
