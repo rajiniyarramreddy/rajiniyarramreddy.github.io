@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>QwikTel Agent — Ask your Salesforce pipeline anything</title>
-<meta name="description" content="QwikTel is the AI analyst built natively on Salesforce. Ask any question in plain English — get the chart, the executive summary, and the next move in seconds.">
+<meta name="description" content="QwikTel Agent is the AI analyst built natively on Salesforce. Ask any question in plain English — get the chart, the executive summary, and the next move in seconds.">
 <style>
   :root{
     --navy-900:#070d1c;
@@ -204,23 +204,24 @@
   }
 </style>
 </head>
-<body>
+<body id="top">
 
 <!-- NAV -->
 <nav>
   <div class="container nav-inner">
-    <div class="logo">
+    <a href="https://techxlnc.ai" target="_blank" rel="noopener" class="logo">
       <div class="logo-mark">QW</div>
-      <span>QwikTel</span>
-    </div>
+      <span>QwikTel Agent</span>
+    </a>
     <div class="nav-links">
+      <a href="https://techxlnc.ai" target="_blank" rel="noopener">Home</a>
       <a href="#how">How it works</a>
       <a href="#prompts">Use cases</a>
       <a href="#pricing">Pricing</a>
       <a href="#faq">FAQ</a>
     </div>
     <div class="nav-cta">
-      <a href="#" class="btn btn-ghost">Sign in</a>
+      <a href="#" class="btn btn-ghost" style="display:none">Sign in</a>
       <a href="https://appexchange.salesforce.com/appxListingDetail?listingId=42f8bb17-de4a-4931-b754-3c6631475971" target="_blank" rel="noopener" class="btn btn-primary">Install free</a>
     </div>
   </div>
@@ -232,9 +233,9 @@
     <div>
       <div class="eyebrow"><span class="dot"></span>Now live on the Salesforce AppExchange</div>
       <h1>Stop hunting reports.<br><span class="accent">Start asking questions.</span></h1>
-      <p class="hero-sub">QwikTel is the AI analyst built natively on Salesforce. Ask anything in plain English — get the chart, the executive summary, and the next move in seconds.</p>
+      <p class="hero-sub">QwikTel Agent is the AI analyst built natively on Salesforce. Ask anything in plain English — get the chart, the executive summary, and the next move in seconds.</p>
       <div class="hero-cta">
-        <a href="https://appexchange.salesforce.com/appxListingDetail?listingId=42f8bb17-de4a-4931-b754-3c6631475971" target="_blank" rel="noopener" class="btn btn-primary">Try QwikTel on AppExchange &rarr;</a>
+        <a href="https://appexchange.salesforce.com/appxListingDetail?listingId=42f8bb17-de4a-4931-b754-3c6631475971" target="_blank" rel="noopener" class="btn btn-primary">Try QwikTel Agent on AppExchange &rarr;</a>
         <a href="https://appexchange.salesforce.com/appxListingDetail?listingId=42f8bb17-de4a-4931-b754-3c6631475971" target="_blank" rel="noopener" class="btn btn-ghost">Install on AppExchange</a>
       </div>
       <div class="hero-meta">
@@ -249,7 +250,7 @@
       <div class="phone">
         <div class="phone-screen">
           <div class="chat-header">
-            <div class="chat-title">QwikTel Analyzer</div>
+            <div class="chat-title">QwikTel Agent</div>
             <div class="chat-new">+ New</div>
           </div>
           <div class="bubble-user">Where are we losing revenue in the funnel compared to last quarter?</div>
@@ -302,12 +303,12 @@
       <div class="section-eyebrow" style="text-align:left">The Monday morning loop</div>
       <h2>You already have the data. The dashboards are built.</h2>
       <p class="first-line">But every Monday, someone still asks: where is the deal slipping? Which rep is on track? Why did Q4 collapse?</p>
-      <p>QwikTel turns those questions into instant answers — without a BI consultant, without a Slack thread, without an export to Excel. Native to Salesforce. Live on your data. Mobile-first.</p>
+      <p>QwikTel Agent turns those questions into instant answers — without a BI consultant, without a Slack thread, without an export to Excel. Native to Salesforce. Live on your data. Mobile-first.</p>
     </div>
     <div class="problem-card">
       <div class="pc-row">
         <div>
-          <div class="pc-tag pc-tag-red">Before QwikTel</div>
+          <div class="pc-tag pc-tag-red">Before QwikTel Agent</div>
           <div class="pc-label" style="margin-top:6px">Pipeline health for the QBR</div>
         </div>
         <div class="pc-time">~4h 30m</div>
@@ -323,7 +324,7 @@
       <hr class="pc-divider">
       <div class="pc-row">
         <div>
-          <div class="pc-tag pc-tag-green">With QwikTel</div>
+          <div class="pc-tag pc-tag-green">With QwikTel Agent</div>
           <div class="pc-label" style="margin-top:6px">Same pipeline answer, with CTA</div>
         </div>
         <div class="pc-time" style="color:#04844B">~58 sec</div>
@@ -379,17 +380,17 @@
   <div class="container">
     <div class="section-eyebrow">How it works</div>
     <h2>Live in 10 minutes. Not 10 weeks.</h2>
-    <p class="section-sub">QwikTel is a managed AppExchange package. No data warehouse, no schema mapping, no implementation partner.</p>
+    <p class="section-sub">QwikTel Agent is a managed AppExchange package. No data warehouse, no schema mapping, no implementation partner.</p>
     <div class="steps">
       <div class="step">
         <div class="step-num">1</div>
         <h3>Install from AppExchange</h3>
-        <p>One-click managed package install. QwikTel reads your existing Sales Cloud objects out of the box.</p>
+        <p>One-click managed package install. QwikTel Agent reads your existing Sales Cloud objects out of the box.</p>
       </div>
       <div class="step">
         <div class="step-num">2</div>
         <h3>Assign permission set</h3>
-        <p>Grant <code style="background:rgba(255,255,255,.08);padding:2px 6px;border-radius:4px;color:#79bfff">QwikTelAgent_Access</code> to anyone you want using QwikTel. Field-level security inherited.</p>
+        <p>Grant <code style="background:rgba(255,255,255,.08);padding:2px 6px;border-radius:4px;color:#79bfff">QwikTelAgent_Access</code> to anyone you want using QwikTel Agent. Field-level security inherited.</p>
       </div>
       <div class="step">
         <div class="step-num">3</div>
@@ -405,7 +406,7 @@
   <div class="container">
     <div class="section-eyebrow">Use cases</div>
     <h2>Real questions our beta users ask every week.</h2>
-    <p class="section-sub">If your team is asking it on Monday morning, QwikTel can answer it before the coffee&rsquo;s cold.</p>
+    <p class="section-sub">If your team is asking it on Monday morning, QwikTel Agent can answer it before the coffee&rsquo;s cold.</p>
     <div class="prompt-grid">
       <div class="prompt-card"><div class="prompt-icon">?</div><div class="prompt-text">Where are we losing revenue in the funnel compared to last quarter?</div></div>
       <div class="prompt-card"><div class="prompt-icon">?</div><div class="prompt-text">Which reps have the highest performance this quarter?</div></div>
@@ -466,7 +467,7 @@
           <li>30-day query history</li>
           <li>Email support</li>
         </ul>
-        <a href="https://appexchange.salesforce.com/appxListingDetail?listingId=42f8bb17-de4a-4931-b754-3c6631475971" target="_blank" rel="noopener" class="btn btn-light">Try QwikTel</a>
+        <a href="https://appexchange.salesforce.com/appxListingDetail?listingId=42f8bb17-de4a-4931-b754-3c6631475971" target="_blank" rel="noopener" class="btn btn-light">Try QwikTel Agent</a>
       </div>
       <div class="price-card featured">
         <span class="featured-tag">Most popular</span>
@@ -480,7 +481,7 @@
           <li>Priority chat support</li>
           <li>Quarterly pipeline review session</li>
         </ul>
-        <a href="https://appexchange.salesforce.com/appxListingDetail?listingId=42f8bb17-de4a-4931-b754-3c6631475971" target="_blank" rel="noopener" class="btn btn-primary">Try QwikTel</a>
+        <a href="https://appexchange.salesforce.com/appxListingDetail?listingId=42f8bb17-de4a-4931-b754-3c6631475971" target="_blank" rel="noopener" class="btn btn-primary">Try QwikTel Agent</a>
       </div>
       <div class="price-card">
         <h3>Enterprise</h3>
@@ -508,11 +509,11 @@
     <div class="faq-list">
       <details class="faq-item" open>
         <summary>Is my data leaving Salesforce?</summary>
-        <p>No. QwikTel is a managed AppExchange package that runs inside your Salesforce org. Queries, visualizations, and saved query history all live within your existing security boundary. We do not pipe your data to an external warehouse.</p>
+        <p>No. QwikTel Agent is a managed AppExchange package that runs inside your Salesforce org. Queries, visualizations, and saved query history all live within your existing security boundary. We do not pipe your data to an external warehouse.</p>
       </details>
       <details class="faq-item">
         <summary>What Salesforce edition do I need?</summary>
-        <p>Enterprise edition or higher (Enterprise, Unlimited, Performance, or Developer). QwikTel uses standard Sales Cloud objects and respects your field-level and record-level security model.</p>
+        <p>Enterprise edition or higher (Enterprise, Unlimited, Performance, or Developer). QwikTel Agent uses standard Sales Cloud objects and respects your field-level and record-level security model.</p>
       </details>
       <details class="faq-item">
         <summary>Do I need a data team to set this up?</summary>
@@ -523,8 +524,8 @@
         <p>14 days, with full access to every feature. No credit card required. Cancel anytime — no recovery emails, no guilt trips.</p>
       </details>
       <details class="faq-item">
-        <summary>How does QwikTel compare to Einstein / Tableau?</summary>
-        <p>Einstein and Tableau give you dashboards. QwikTel gives you answers. We're built for the moment a sales leader has a question and 30 seconds before the next meeting — not the moment they want to spend a week building a dashboard.</p>
+        <summary>How does QwikTel Agent compare to Einstein / Tableau?</summary>
+        <p>Einstein and Tableau give you dashboards. QwikTel Agent gives you answers. We're built for the moment a sales leader has a question and 30 seconds before the next meeting — not the moment they want to spend a week building a dashboard.</p>
       </details>
       <details class="faq-item">
         <summary>Can I customize the prompts and dashboards?</summary>
@@ -538,9 +539,9 @@
 <section class="final" id="cta">
   <div class="container final-inner">
     <h2>Your pipeline already has the answers.</h2>
-    <p>QwikTel just makes them easier to ask for.</p>
+    <p>QwikTel Agent just makes them easier to ask for.</p>
     <div class="hero-cta">
-      <a href="https://appexchange.salesforce.com/appxListingDetail?listingId=42f8bb17-de4a-4931-b754-3c6631475971" target="_blank" rel="noopener" class="btn btn-primary">Try QwikTel on AppExchange &rarr;</a>
+      <a href="https://appexchange.salesforce.com/appxListingDetail?listingId=42f8bb17-de4a-4931-b754-3c6631475971" target="_blank" rel="noopener" class="btn btn-primary">Try QwikTel Agent on AppExchange &rarr;</a>
       <a href="https://appexchange.salesforce.com/appxListingDetail?listingId=42f8bb17-de4a-4931-b754-3c6631475971" target="_blank" rel="noopener" class="btn btn-ghost">See the product</a>
     </div>
   </div>
@@ -551,10 +552,10 @@
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
-        <div class="logo" style="color:#fff">
+        <a href="https://techxlnc.ai" target="_blank" rel="noopener" class="logo" style="color:#fff">
           <div class="logo-mark">QW</div>
-          <span>QwikTel</span>
-        </div>
+          <span>QwikTel Agent</span>
+        </a>
         <p>The AI analyst native to Salesforce. Ask your pipeline anything.</p>
       </div>
       <div class="footer-col">
@@ -580,7 +581,7 @@
       </div>
     </div>
     <div class="footer-bottom">
-      <span>&copy; 2026 QwikTel by Techxlnc. All rights reserved.</span>
+      <span>&copy; 2026 QwikTel Agent by Techxlnc. All rights reserved.</span>
       <span>Made on the Salesforce platform.</span>
     </div>
   </div>
