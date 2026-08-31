@@ -526,6 +526,42 @@
             padding: 2rem 5%;
         }
 
+        .footer-offices {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 2rem;
+            padding-bottom: 2rem;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .footer-office h6 {
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-office p {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.65;
+            margin-bottom: 0.4rem;
+        }
+
+        .footer-office a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+        }
+
+        .footer-office a:hover {
+            color: white;
+        }
+
         .footer-content {
             max-width: 1200px;
             margin: 0 auto;
@@ -800,13 +836,7 @@
             </p>
             <div class="contact-details">
                 <p>
-                    <strong>Hyderabad Office:</strong> Laxmi Cyber City, Kondapur, Whitefields, Gachibowli, Kondapur, Hyderabad, Telangana 500084
-                </p>
-                <p>
-                    <strong>Colombia Office:</strong> Carrera 10 No. 97A - 13, Oficina No. 202, Torre B, Edificio Bogotá Trade Center, Barrio Chico Norte, Bogotá, Colombia
-                </p>
-                <p>
-                    <strong>Phone:</strong> <a href="tel:+919491456233">+91-9491456233</a> · <a href="tel:+576017436530">+57 601 7436530</a>
+                    <strong>Phone:</strong> <a href="tel:+919491456233">+91-9491456233</a>
                 </p>
                 <p>
                     <strong>Email:</strong> <a href="mailto:contact@techxlnc.ai">contact@techxlnc.ai</a>
@@ -822,6 +852,26 @@
     </section>
 
     <footer class="footer">
+        <div class="footer-offices">
+            <div class="footer-office">
+                <h6>Hyderabad Office</h6>
+                <p>
+                    Laxmi Cyber City<br />
+                    Kondapur, Whitefields, Gachibowli<br />
+                    Kondapur, Hyderabad, Telangana 500084
+                </p>
+                <p><a href="tel:+919491456233">+91 94914 56233</a></p>
+            </div>
+            <div class="footer-office">
+                <h6>Colombia Office</h6>
+                <p>
+                    Carrera 10 No. 97A - 13, Oficina No. 202, Torre B<br />
+                    Edificio Bogotá Trade Center<br />
+                    Barrio Chico Norte, Bogotá, Colombia
+                </p>
+                <p><a href="tel:+576017436530">Colombia: +57 601 7436530</a></p>
+            </div>
+        </div>
         <div class="footer-content">
             <p>© 2026 TechXlnc. All Rights Reserved.</p>
             <div class="social-links">
